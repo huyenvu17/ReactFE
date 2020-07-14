@@ -5,6 +5,10 @@ import BaiTapLayout from './Components/BaiTapLayout/BaiTapLayout';
 import BaiTapLayout2 from './Components/BaiTapLayout2/BaiTapLayout2';
 import DataBinding from './DataBinding/DataBinding';
 import BT3DanLayout from './Components/BaiTapDanLayout/BT3DanLayout'
+import EventBinding from './EventBinding/EventBinding';
+import RenderWithState from './RenderWithState/RenderWithState';
+import BaiTapChonXe from './RenderWithState/BaiTapChonXe';
+import RenderWithMap from './RenderWithMap/RenderWithMap';
 function App() {
   return (
     <div className="App">
@@ -12,7 +16,11 @@ function App() {
       {/* <BaiTapLayout /> */}
       {/* <BaiTapLayout2 /> */}
       {/* <DataBinding /> */}
-      <BT3DanLayout />
+      {/* <BT3DanLayout /> */}
+      {/* <EventBinding /> */}
+      {/* <RenderWithState /> */}
+      {/* <BaiTapChonXe /> */}
+      <RenderWithMap />
     </div>
   );
 }
