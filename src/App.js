@@ -11,11 +11,12 @@ import BaiTapChonXe from './RenderWithState/BaiTapChonXe';
 import RenderWithMap from './RenderWithMap/RenderWithMap';
 import ExampleGlasses from './RenderWithState/ExampleGlasses';
 import Demoprops from './Props/DemoProps';
+import ExampleCard from './LiftingUpState/ExampleCard'
 function App() {
   return (
     <div className="App">
       {/* <Header /> */}
-      <BaiTapLayout />
+      {/* <BaiTapLayout /> */}
       {/* <BaiTapLayout2 /> */}
       {/* <DataBinding /> */}
       {/* <BT3DanLayout /> */}
@@ -24,7 +25,8 @@ function App() {
       {/* <BaiTapChonXe /> */}
       {/* <RenderWithMap /> */}
       {/* <ExampleGlasses /> */}
-      <Demoprops />
+      {/* <Demoprops /> */}
+      <ExampleCard />
     </div>
   );
 }
