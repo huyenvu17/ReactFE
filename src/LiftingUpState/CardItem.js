@@ -14,15 +14,15 @@ export default class CardItem extends Component {
           />
         </td>
         <td>{carditem.tenSP}</td>
-        <td>{carditem.giaBan}</td>
+        <td>{(carditem.giaBan).toLocaleString()}</td>
         <td>
-          <button className="btn btn-info">-</button>
+          <button onClick={() => this.props.tangGiamSoLuong(carditem.maSP, false)} className="btn btn-info">-</button>
           <span className="mx-2">{carditem.soLuong}</span>
-          <button className="btn btn-info">+</button>
+          <button onClick={() => this.props.tangGiamSoLuong(carditem.maSP, true)} className="btn btn-info">+</button>
         </td>
-        <td>{carditem.giaBan * carditem.soLuong}</td>
+        <td>{(carditem.giaBan * carditem.soLuong).toLocaleString()}</td>
         <td>
-          <button className="btn btn-danger" onClick={() => this.props.handleDeleteProduct(carditem)}>xóa</button>
+          <button  className="btn btn-danger" onClick={() => this.props.handleDeleteProduct(carditem)}>xóa</button>
         </td>
       </tr>
     );

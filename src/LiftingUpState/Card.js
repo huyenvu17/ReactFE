@@ -4,8 +4,13 @@ import CardItem from './CardItem'
 export default class Card extends Component {
     renderCardItem = () => {
     return this.props.cardList.map((carditem, index)=>{
-      return <CardItem carditem={carditem} key={index} index={index} handleDeleteProduct={this.props.handleDeleteProduct} />
+      return <CardItem tangGiamSoLuong={this.props.tangGiamSoLuong} carditem={carditem} key={index} index={index} handleDeleteProduct={this.props.handleDeleteProduct} />
     })
+  }
+  tinhTongTien = () => {
+    return this.props.cardList.reduce((tongtien, spGH, index) => {
+      return tongtien += spGH.soLuong * spGH.giaBan;
+    },0).toLocaleString();
   }
   render() {
     return (
@@ -28,12 +33,9 @@ export default class Card extends Component {
             </tbody>
             <tfoot>
               <tr>
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td>32300000</td>
+                <td colSpan="5" />
+                <td>Tổng tiền</td>
+                <td>{this.tinhTongTien()}</td>
               </tr>
             </tfoot>
           </table>

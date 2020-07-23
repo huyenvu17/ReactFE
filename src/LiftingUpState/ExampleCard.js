@@ -10,6 +10,29 @@ export default class ExampleCard extends Component {
     productSelected: null,
     cardList: [],
   }
+  // xử lý tăng giảm số lượng
+  changeQuantity = (maSP, tangGiam) => { //tăng là true, giảm là false
+    // tìm ra sản phẩm chứa maSP = với maSP tăng giảm số lượng click
+    console.log('ma sp', maSP)
+    console.log('tang giam', tangGiam)
+
+    let cardListUpdate = [...this.state.cardList];
+    let index = cardListUpdate.findIndex((spGiohang) => spGiohang.maSP === maSP);
+    if(index !== -1){
+      if(tangGiam){
+        cardListUpdate[index].soLuong += 1;
+      }
+      else{
+        if(cardListUpdate[index].soLuong > 1){
+          cardListUpdate[index].soLuong -= 1;
+        }
+        else{
+          alert("so luong tối thiểu phải lớn hơn 1")
+        }
+      }
+    }
+    this.setState({cardList: cardListUpdate})
+  }
   handleProductSelected = (prod) => {
     this.setState({productSelected: prod})
   }
@@ -38,7 +61,6 @@ export default class ExampleCard extends Component {
      * 2/ cat ra khoi mang
      * 3/ setState
      */
-    console.log("delete")
     let cardListUpdate = [...this.state.cardList];
     let index = cardListUpdate.findIndex((item)=> item.maSP === card.maSP);
     if(index >= 0){
@@ -46,10 +68,11 @@ export default class ExampleCard extends Component {
       this.setState({cardList: cardListUpdate})
     }
   }
+  
   render() {
     return (
       <div className="container">
-        <Card cardList={this.state.cardList} handleDeleteProduct={this.handleDeleteProduct} />
+        <Card tangGiamSoLuong={this.changeQuantity} cardList={this.state.cardList} handleDeleteProduct={this.handleDeleteProduct} />
         <ProductList productList={this.state.productList} handleProductSelected={this.handleProductSelected} handleBuyProduct={this.handleBuyProduct} />
         {this.state.productSelected ? <SelectedProduct productSelected={this.state.productSelected} /> : null}
         </div>

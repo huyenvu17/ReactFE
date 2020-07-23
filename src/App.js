@@ -12,6 +12,7 @@ import RenderWithMap from './RenderWithMap/RenderWithMap';
 import ExampleGlasses from './RenderWithState/ExampleGlasses';
 import Demoprops from './Props/DemoProps';
 import ExampleCard from './LiftingUpState/ExampleCard'
+import BaiTapGioHang from './BaiTapRedux/BaiTapGioHang/BaiTapGioHang';
 function App() {
   return (
     <div className="App">
@@ -26,7 +27,8 @@ function App() {
       {/* <RenderWithMap /> */}
       {/* <ExampleGlasses /> */}
       {/* <Demoprops /> */}
-      <ExampleCard />
+      {/* <ExampleCard /> */}
+      <BaiTapGioHang />
     </div>
   );
 }
