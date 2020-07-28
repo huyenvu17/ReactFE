@@ -13,6 +13,7 @@ import ExampleGlasses from './RenderWithState/ExampleGlasses';
 import Demoprops from './Props/DemoProps';
 import ExampleCard from './LiftingUpState/ExampleCard'
 import BaiTapGioHang from './BaiTapRedux/BaiTapGioHang/BaiTapGioHang';
+import GameBauCua from './GameBauCua';
 function App() {
   return (
     <div className="App">
@@ -28,7 +29,8 @@ function App() {
       {/* <ExampleGlasses /> */}
       {/* <Demoprops /> */}
       {/* <ExampleCard /> */}
-      <BaiTapGioHang />
+      {/* <BaiTapGioHang /> */}
+      <GameBauCua />
     </div>
   );
 }
