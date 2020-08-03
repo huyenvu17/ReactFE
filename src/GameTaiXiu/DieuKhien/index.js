@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import * as actionfunction from '../../Redux/actions/GameTaiXiuAction';
 export class DieuKhien extends Component {
   renderXucXac = (danhSachXucXac) => {
     return danhSachXucXac.map((item, index) => {
@@ -39,10 +40,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     chonTaiXiu: (taiXiu) => {
-      dispatch({
-        type: 'CHON_TAI_XIU',
-        taiXiu
-      });
+      dispatch(actionfunction.chonTaiXiu(taiXiu));
     }
   }
 }

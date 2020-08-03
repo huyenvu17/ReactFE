@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
   return {
     taiXiu: state.stateGameTaiXiuReducer.taiXiu,
     soBanThang: state.stateGameTaiXiuReducer.soBanThang,
-    soBanChoi: state.stateGameTaiXiuReducer.soBanThang,
+    soBanChoi: state.stateGameTaiXiuReducer.soBanChoi,
   }
 }
 export default connect(mapStateToProps, null)(KetQua);

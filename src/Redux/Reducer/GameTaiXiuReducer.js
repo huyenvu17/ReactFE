@@ -1,3 +1,5 @@
+import { getRandomInt } from "../../utils/randomInt";
+
 const danhSachXucXac = [
   {ma: "one", classes: "fa fa-dice-one", so: 1},
   {ma: "two", classes: "fa fa-dice-two", so: 2},
@@ -19,11 +21,35 @@ const initialState = {
 }
 const GameTaiXiuReducer = (state = initialState, actions) => {
   switch(actions.type){
-    case 'CHON_TAI_XIU':
+    case 'CHON_TAI_XIU': {
       console.log(actions)
       let {taiXiu} = state;
       taiXiu = actions.taiXiu;
       return {...state, taiXiu};
+    }
+    case 'CHOI_GAME_XI_NGAU': {
+      let xucXac = [
+        danhSachXucXac[getRandomInt(6)],
+        danhSachXucXac[getRandomInt(6)],
+        danhSachXucXac[getRandomInt(6)]
+      ]
+      let {soBanChoi, soBanThang, taiXiu} = state;
+      let tongXucXac = xucXac.reduce((tong, ele) => (tong += ele.so) ,0);
+      if(tongXucXac <=3 && tongXucXac >= 10){
+        tongXucXac = false;
+      }
+      else{
+        tongXucXac = true;
+      }
+      if(taiXiu === tongXucXac){
+        soBanThang +=1;
+      }
+      else{
+
+      }
+      soBanChoi++;
+      return {...state, xucXac, soBanThang, soBanChoi}
+    }
     default:
       break;
   }
