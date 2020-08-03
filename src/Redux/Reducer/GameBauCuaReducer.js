@@ -1,4 +1,4 @@
-
+import {getRandomInt} from '../../utils/randomInt';
 const initialState = {
   tongTien: 100,
   danhSachCuoc: [
@@ -17,7 +17,7 @@ const initialState = {
 }
 const GameBauCuaReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'TANG_GIAM':
+    case 'TANG_GIAM': {
       let danhSachCuoc = [...state.danhSachCuoc];
       let index = danhSachCuoc.findIndex(ele => ele.ma === action.ma);
       let { tongTien } = state;
@@ -38,6 +38,40 @@ const GameBauCuaReducer = (state = initialState, action) => {
       //state.tongTien = tongTien;
       //return state; // khong bi thay doi địa chỉ => không render lại
       return { ...state, danhSachCuoc, tongTien }; // thay đổi địa chỉ => render lại
+    }
+    case 'CHOI_GAME': {
+      let danhSachCuoc = [...state.danhSachCuoc];
+      let {tongTien} = state;
+      // tạo xúc sắc ngẫu nhiên
+      let xucXac = [
+        danhSachCuoc[getRandomInt(6)],
+        danhSachCuoc[getRandomInt(6)],
+        danhSachCuoc[getRandomInt(6)]
+      ];
+      // lấy những con cược
+      danhSachCuoc = danhSachCuoc.filter((ele) => ele.giaCuoc > 0 );
+      for (let ele of danhSachCuoc) {
+        let traLaiTien = xucXac.find((item) => item.ma === ele.ma);
+        if(traLaiTien){
+          tongTien += ele.giaCuoc;
+        }
+      }
+      // trúng thưởng
+      for (let ele of xucXac) {
+        let trungThuong = danhSachCuoc.find((item) => item.ma === ele.ma);
+        if(trungThuong) {
+          tongTien += trungThuong.giaCuoc;
+        }
+      }
+      // xử lý trả lại tiền
+      let danhSachCuocUpdate = [...state.danhSachCuoc];
+      danhSachCuocUpdate = danhSachCuocUpdate.map((ele) => ({
+          ...ele,
+          giaCuoc: 0
+        }
+      ));
+      return { ...state, xucXac, tongTien, danhSachCuoc: danhSachCuocUpdate };
+    }
     default:
       break;
   }
