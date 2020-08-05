@@ -15,6 +15,8 @@ import ExampleCard from './LiftingUpState/ExampleCard'
 import BaiTapGioHang from './BaiTapRedux/BaiTapGioHang/BaiTapGioHang';
 import GameBauCua from './GameBauCua';
 import GameTaiXiu from './GameTaiXiu';
+import FormValidation from './FormValidation';
+import QuanLySinhVien from './FormValidation/QuanLySinhVien';
 function App() {
   return (
     <div className="App">
@@ -32,7 +34,9 @@ function App() {
       {/* <ExampleCard /> */}
       {/* <BaiTapGioHang /> */}
       {/* <GameBauCua /> */}
-      <GameTaiXiu />
+      {/* <GameTaiXiu /> */}
+      {/* <FormValidation /> */}
+      <QuanLySinhVien />
     </div>
   );
 }
