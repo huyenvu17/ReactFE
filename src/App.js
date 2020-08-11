@@ -19,6 +19,7 @@ import FormValidation from './FormValidation';
 import QuanLySinhVien from './FormValidation/QuanLySinhVien';
 import ReactLifeCycle from './ReactLifeCycle/ReactLifeCycle';
 import PureComponentDemo from './PureComponentDemo/PureComponentDemo';
+import AjaxApi from './AjaxAPI/AjaxApi';
 function App() {
   return (
     <div className="App">
@@ -40,7 +41,8 @@ function App() {
       {/* <FormValidation /> */}
       {/* <QuanLySinhVien /> */}
       {/* <ReactLifeCycle /> */}
-      <PureComponentDemo />
+      {/* <PureComponentDemo /> */}
+      <AjaxApi/>
     </div>
   );
 }

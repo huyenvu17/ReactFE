@@ -1,16 +1,8 @@
-import React, { Component } from 'react'
-import _ from 'lodash'
-export default class ChildComponent extends Component {
+import React, { Component, PureComponent } from "react";
 
-  shouldComponentUpdate(newProps, newState){
-    console.log('newProps', newProps)
-    if(!_.isEqual(this.props.user, newProps.user)){
-      return true;
-    }
-    return false;
-  }
+export default class ChildComponent_Pure extends PureComponent {
   render() {
-    console.log("child component")
+    console.log("child component pure")
     return (
       <div>
         <h1>User Child: {this.props.user.name}</h1>
