@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import { THEM_NGUOI_DUNG } from '../Redux/contants/QuanLySinhVienConst';
+//import thư viện xử lý object mảng js
+import _ from 'lodash';
 class FormValidation extends Component {
 
   state = {
@@ -87,7 +89,31 @@ class FormValidation extends Component {
       nguoiDung: this.state.values
     })
   }
+  //chạy sau khi nhận props mới và trước khi render
+  // static getDerivedStateFromProps(newProps, currentState) { // props mới và state hiện tại'
+  //   console.log('newProps', newProps)
+  //   //so sánh nếu nguoiDungEdit (được click) khác state hiện tại thì lấy cái được click gắn cho state hiện tại
+  //   //!_.isEqual(newProps.nguoiDungEdit, curentState.values
+
+  //   if (newProps.nguoiDungEdit.edit && newProps.nguoiDungEdit.taiKhoan !== currentState.values.taiKhoan) {
+  //     //lấy props mới trả về state mới
+  //     let newState = { ...currentState, values: newProps.nguoiDungEdit }
+  //     // currentState.taiKhoan = newProps.nguoiDungEdit.taiKhoan
+  //     // ...
+  //     return { ...newState }; // trả về state mới
+  //   }
+  //   return null;
+  // }
+
+  // componentWillReceiveProps(newProps){
+  //   this.setState({values: newProps.nguoiDungEdit})
+  // }
+
   render() {
+    // lấy về props người dùng từ state reducer QLSV
+    //let {taiKhoan, matKhau, email, soDt, hoTen, maNhom} = this.props.nguoiDungEdit;
+    // sau khi xử lý gán state cho props
+    let {taiKhoan, matKhau, email, soDt, hoTen, maNhom} = this.state.values;
     return (
       <div className="container-fluid">
         <div className="card text-white bg-light text-dark mt-3">
@@ -98,38 +124,46 @@ class FormValidation extends Component {
                 <div className="col-6">
                   <div className="form-group">
                     <p>Tài khoản</p>
-                    <input label="Tài khoản" className="form-control" name="taiKhoan" onChange={this.handleChange} />
+                    <input value={taiKhoan} label="Tài khoản" className="form-control" name="taiKhoan" onChange={this.handleChange} />
                     <p className="text text-danger">{this.state.errors.taiKhoan}</p>
                   </div>
                   <div className="form-group">
                     <p>Mật khẩu</p>
-                    <input label="Mật khẩu" type="password" className="form-control" name="matKhau" onChange={this.handleChange}/>
+                    <input value={matKhau} label="Mật khẩu" type="password" className="form-control" name="matKhau" onChange={this.handleChange}/>
                     <p className="text text-danger">{this.state.errors.matKhau}</p>
                   </div>
                   <div className="form-group">
                     <p>Số điện thoại</p>
-                    <input label="Số điện thoại" type="phone" className="form-control" name="soDt" onChange={this.handleChange} />
+                    <input value={soDt} label="Số điện thoại" type="phone" className="form-control" name="soDt" onChange={this.handleChange} />
                     <p className="text text-danger">{this.state.errors.soDt}</p>
                   </div>
                 </div>
                 <div className="col-6">
                   <div className="form-group">
                     <p>Họ tên</p>
-                    <input label="Họ tên" className="form-control" name="hoTen" onChange={this.handleChange} />
+                    <input value={hoTen} label="Họ tên" className="form-control" name="hoTen" onChange={this.handleChange} />
                     <p className="text text-danger">{this.state.errors.hoTen}</p>
                   </div>
                   <div className="form-group">
                     <p>Email</p>
-                    <input label="Email" type="email" className="form-control" name="email" onChange={this.handleChange} />
+                    <input value={email} label="Email" type="email" className="form-control" name="email" onChange={this.handleChange} />
                     <p className="text text-danger">{this.state.errors.email}</p>
                   </div>
                   <div className="form-group">
                     <p>Mã nhóm</p>
-                    <input label="Mã Nhóm" className="form-control" name="maNhom" onChange={this.handleChange} />
+                    <input value={maNhom} label="Mã Nhóm" className="form-control" name="maNhom" onChange={this.handleChange} />
                     <p className="text text-danger">{this.state.errors.maNhom}</p>
                   </div>
                   <div className="form-group">
-                    <button className="btn btn-dark">Đăng ký</button>
+                    <button className="btn btn-dark mr-2">Đăng ký</button>
+                    <button className="btn btn-primary" type='button'
+                      onClick={()=> {
+                        this.props.dispatch({
+                          type: 'CAP_NHAT',
+                          nguoiDung: this.state.values
+                        })
+                      }}
+                    >Cập Nhật</button>
                   </div>
                 </div>
               </div>
@@ -139,7 +173,21 @@ class FormValidation extends Component {
       </div>
     )
   }
+  //prevProps: la prop trước khi render
+  //prevState: là state trước khi render
+  componentDidUpdate(prevProps, prevState){
+    if(!_.isEqual(prevProps.nguoiDungEdit, this.props.nguoiDungEdit)){
+      // chi setState khi nguoi dung bam nut chinh sua
+      this.setState({
+        values: this.props.nguoiDungEdit
+      })
+    }
+  }
 }
 
-
-export default connect(null)(FormValidation);
+const mapStateToProps = state => {
+  return{
+    nguoiDungEdit: state.stateQuanLySinhVienReducer.nguoiDungEdit
+  }
+}
+export default connect(mapStateToProps)(FormValidation);

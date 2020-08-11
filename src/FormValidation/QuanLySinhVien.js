@@ -14,8 +14,14 @@ class QuanLySinhVien extends Component {
           <td>{item.soDt}</td>
           <td>{item.maNhom}</td>
           <td>
-            <button className="btn btn-success mr-2">Edit</button>
-            <button className="btn btn-danger">Delete</button>
+            <button className="btn btn-success mr-2" 
+            onClick={() => this.props.dispatch({type: 'CHINH_SUA',item})}>Edit</button>
+            <button className="btn btn-danger" type="button"
+              onClick={()=> this.props.dispatch({
+                type: 'XOA_ND',
+                taiKhoan: item.taiKhoan
+              })}
+            >Delete</button>
           </td>
         </tr>
       )
@@ -48,7 +54,8 @@ class QuanLySinhVien extends Component {
 
 function mapStateToProps(state){
   return {
-    mangNguoiDung: state.stateQuanLySinhVienReducer.mangNguoiDung
+    mangNguoiDung: state.stateQuanLySinhVienReducer.mangNguoiDung,
+    
   }
 }
 

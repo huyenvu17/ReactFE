@@ -17,6 +17,8 @@ import GameBauCua from './GameBauCua';
 import GameTaiXiu from './GameTaiXiu';
 import FormValidation from './FormValidation';
 import QuanLySinhVien from './FormValidation/QuanLySinhVien';
+import ReactLifeCycle from './ReactLifeCycle/ReactLifeCycle';
+import PureComponentDemo from './PureComponentDemo/PureComponentDemo';
 function App() {
   return (
     <div className="App">
@@ -36,7 +38,9 @@ function App() {
       {/* <GameBauCua /> */}
       {/* <GameTaiXiu /> */}
       {/* <FormValidation /> */}
-      <QuanLySinhVien />
+      {/* <QuanLySinhVien /> */}
+      {/* <ReactLifeCycle /> */}
+      <PureComponentDemo />
     </div>
   );
 }
